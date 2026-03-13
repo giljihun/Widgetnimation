@@ -9,37 +9,28 @@ import PhotosUI
 import SwiftUI
 import WidgetKit
 
-/**
- Main screen for compositing a user's photo into keyring widget frames.
-
- The flow is:
- 1) User picks a photo from their library
- 2) Tap "Generate" — FrameCompositor composites 30 PNG frames
- 3) Frames are saved to App Group, widget timeline is reloaded
- 4) The widget immediately picks up the new frames
- */
+/// Pick a photo → generate composited frames → push to widget.
 struct ContentView: View {
     @State private var selectedItem: PhotosPickerItem?
     @State private var selectedImage: UIImage?
     @State private var isGenerating = false
     @State private var resultMessage: String?
-
     @State private var hasFrames = FrameStorage.hasCustomFrames
 
     var body: some View {
         VStack(spacing: 16) {
             Spacer()
-
             headerSection
             imagePickerSection
             generateButton
             deleteButton
             resultSection
-
             Spacer()
         }
         .padding(.horizontal, 32)
     }
+
+    // MARK: - Sections
 
     private var headerSection: some View {
         VStack(spacing: 8) {
@@ -67,10 +58,7 @@ struct ContentView: View {
             .frame(width: 160, height: 160)
             .clipShape(RoundedRectangle(cornerRadius: 16))
 
-            PhotosPicker(
-                selection: $selectedItem,
-                matching: .images
-            ) {
+            PhotosPicker(selection: $selectedItem, matching: .images) {
                 Label(
                     selectedImage == nil ? "Select Image" : "Change Image",
                     systemImage: "photo.on.rectangle"
@@ -123,27 +111,20 @@ struct ContentView: View {
             .opacity(resultMessage == nil ? 0 : 1)
     }
 
+    // MARK: - Actions
+
     private func loadImage(from item: PhotosPickerItem?) async {
         guard let item,
               let data = try? await item.loadTransferable(type: Data.self),
-              let image = UIImage(data: data) else {
+              let image = UIImage(data: data)
+        else {
             selectedImage = nil
             return
         }
-        // Normalize EXIF orientation — some photos store pixels
-        // in landscape and rely on metadata to rotate for display.
-        // Re-drawing into a new context bakes the rotation into
-        // the actual pixel data so it always displays upright.
         selectedImage = image.normalizedOrientation()
         resultMessage = nil
     }
 
-    /**
-     The generation pipeline runs on a background thread:
-     1) FrameCompositor composites user image onto 30 keyring frames
-     2) FrameStorage saves the PNGs to the App Group container
-     3) WidgetCenter reloads all timelines so the widget picks up new frames
-     */
     private func generateWidgetFrames() async {
         guard let image = selectedImage else { return }
         isGenerating = true
@@ -166,21 +147,21 @@ struct ContentView: View {
         }
 
         WidgetCenter.shared.reloadAllTimelines()
-
         hasFrames = true
         resultMessage = "✓ Done! Check your widget."
     }
 }
 
+// MARK: - UIImage + EXIF
+
 extension UIImage {
+    /// Bakes EXIF orientation into pixel data so the image always renders upright.
     func normalizedOrientation() -> UIImage {
         guard imageOrientation != .up else { return self }
-
         UIGraphicsBeginImageContextWithOptions(size, false, scale)
         draw(in: CGRect(origin: .zero, size: size))
         let normalized = UIGraphicsGetImageFromCurrentImageContext()
         UIGraphicsEndImageContext()
-
         return normalized ?? self
     }
 }
