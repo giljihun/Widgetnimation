@@ -23,6 +23,16 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
+		4C08F7692F63E266003015CC /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		4C25276D2F4D9AF7003CC5AD /* Embed Foundation Extensions */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
@@ -53,6 +63,19 @@
 		};
 /* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
 
+/* Begin PBXFileSystemSynchronizedGroupBuildPhaseMembershipExceptionSet section */
+		4C08F76A2F63E266003015CC /* Exceptions for "Widget" folder in "Embed Frameworks" phase from "WidgetnimationWidgetExtension" target */ = {
+			isa = PBXFileSystemSynchronizedGroupBuildPhaseMembershipExceptionSet;
+			attributesByRelativePath = {
+				Frameworks/ClockHandRotationEffect.xcframework = (CodeSignOnCopy, RemoveHeadersOnCopy, );
+			};
+			buildPhase = 4C08F7692F63E266003015CC /* Embed Frameworks */;
+			membershipExceptions = (
+				Frameworks/ClockHandRotationEffect.xcframework,
+			);
+		};
+/* End PBXFileSystemSynchronizedGroupBuildPhaseMembershipExceptionSet section */
+
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		4C25267C2F4D5A80003CC5AD /* App */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
@@ -63,6 +86,7 @@
 			isa = PBXFileSystemSynchronizedRootGroup;
 			exceptions = (
 				4C25277F2F4E1000003CC5AD /* Exceptions for "Widget" folder in "WidgetnimationWidgetExtension" target */,
+				4C08F76A2F63E266003015CC /* Exceptions for "Widget" folder in "Embed Frameworks" phase from "WidgetnimationWidgetExtension" target */,
 			);
 			path = Widget;
 			sourceTree = "<group>";
@@ -165,6 +189,7 @@
 				4C2527502F4D9AF6003CC5AD /* Sources */,
 				4C2527512F4D9AF6003CC5AD /* Frameworks */,
 				4C2527522F4D9AF6003CC5AD /* Resources */,
+				4C08F7692F63E266003015CC /* Embed Frameworks */,
 			);
 			buildRules = (
 			);

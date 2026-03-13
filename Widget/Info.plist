@@ -7,9 +7,5 @@
 		<key>NSExtensionPointIdentifier</key>
 		<string>com.apple.widgetkit-extension</string>
 	</dict>
-	<key>UIAppFonts</key>
-	<array>
-		<string>BlinkMask.otf</string>
-	</array>
 </dict>
 </plist>
