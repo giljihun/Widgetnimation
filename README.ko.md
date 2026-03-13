@@ -19,9 +19,9 @@
 1. 모든 프레임을 `ZStack`에 쌓고, 각각 arc slice(`360° / 프레임 수`)로 마스킹
 2. Arc 반지름은 뷰 크기의 50배 — 곡률 ≈ 0이라 직선처럼 동작
 3. `clockHandRotationEffect(period:)`가 마스크를 회전시켜 한 번에 **정확히 1개 프레임**만 표시
-4. 투명 배경에서도 잔상 없음 — 뷰포트에 항상 1개 프레임만 존재
+4. 잔상 없음 — 뷰포트에 항상 1개 프레임만 존재
 
-> [Bryce Bostwick의 WidgetAnimation](https://github.com/brycebostwick/WidgetAnimation) (`Text(.timer)` + 커스텀 폰트 마스킹)에서 영감. Arc Mask 방식은 커스텀 폰트 없이 투명 배경을 지원합니다.
+> [Bryce Bostwick의 WidgetAnimation](https://github.com/brycebostwick/WidgetAnimation) (`Text(.timer)` + 커스텀 폰트 마스킹)에서 영감. Arc Mask 방식은 커스텀 폰트가 필요 없습니다.
 
 ## 사용자 이미지 합성
 
@@ -53,6 +53,7 @@ Widget/
 ## Acknowledgments
 
 - [Bryce Bostwick / WidgetAnimation](https://github.com/brycebostwick/WidgetAnimation) — 모든 것의 시작이 된 `Text(.timer)` 트릭
+- [octree / ClockHandRotationKit](https://github.com/octree/ClockHandRotationKit) — Arc Mask를 가능하게 한 `clockHandRotationEffect` 래퍼
 - [Colorful Widget](https://apps.apple.com/us/app/colorful-widget-icon-themes/id1538946171?l=ko) — 아이디어의 영감이 된 앱
 - [KEYCHY](https://apps.apple.com/us/app/%ED%82%A4%EC%B9%98-keychy/id6754951347)에서 개발 후 샘플 프로젝트로 포팅
 

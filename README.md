@@ -19,9 +19,9 @@
 1. All frames are stacked in a `ZStack`, each masked by an arc slice (`360° / frameCount`)
 2. The arc radius is 50× the view size — curvature ≈ 0, so each slice acts as a straight line
 3. `clockHandRotationEffect(period:)` rotates the mask, revealing exactly **one frame at a time**
-4. No ghosting on transparent backgrounds — only one frame exists in the viewport at any moment
+4. No ghosting — only one frame exists in the viewport at any moment
 
-> Inspired by [Bryce Bostwick's WidgetAnimation](https://github.com/brycebostwick/WidgetAnimation) (`Text(.timer)` + custom font masking). The Arc Mask approach removes the need for custom fonts and supports transparent backgrounds.
+> Inspired by [Bryce Bostwick's WidgetAnimation](https://github.com/brycebostwick/WidgetAnimation) (`Text(.timer)` + custom font masking). The Arc Mask approach removes the need for custom fonts entirely.
 
 ## User Image Compositing
 
@@ -53,6 +53,7 @@ Widget/
 ## Acknowledgments
 
 - [Bryce Bostwick / WidgetAnimation](https://github.com/brycebostwick/WidgetAnimation) — the original `Text(.timer)` trick that started it all
+- [octree / ClockHandRotationKit](https://github.com/octree/ClockHandRotationKit) — the `clockHandRotationEffect` wrapper that makes Arc Mask possible
 - [Colorful Widget](https://apps.apple.com/us/app/colorful-widget-icon-themes/id1538946171?l=ko) — the app that inspired the idea
 - Built for [KEYCHY](https://apps.apple.com/us/app/%ED%82%A4%EC%B9%98-keychy/id6754951347), ported back as a sample project
 
