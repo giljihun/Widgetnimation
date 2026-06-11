@@ -1,5 +1,7 @@
 # Widgetnimation
 
+> **In this time, YOU SHOULD USE UDER Xcode 26.0.1.**
+
 [![Platform](https://img.shields.io/badge/platform-iOS%2026+-blue.svg)](https://developer.apple.com/ios/)
 [![Swift](https://img.shields.io/badge/Swift-5.0-orange.svg)](https://swift.org/)
 [![License](https://img.shields.io/badge/license-MIT-green.svg)](LICENSE)
